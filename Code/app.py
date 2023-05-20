@@ -50,11 +50,11 @@ def first_last_dates(session):
 def last_year(session):
 
     # Find the most recent date in the data set.
-    recent_date = session.query(measurement.date).order_by(desc(measurement.date)).first().date
+    _,last_date = first_last_dates(session)
     
-    year = int(recent_date[0:4])              #Get year from first four digits of date and convert to integer
+    year = int(last_date[0:4])              #Get year from first four digits of date and convert to integer
     last_year = str(year - 1)                 #Get the previous year and assign it to a variable as a string
-    year_ago = last_year + recent_date[4:]    #Define the date one year ago
+    year_ago = last_year + last_date[4:]    #Define the date one year ago
     
     return year_ago
 
